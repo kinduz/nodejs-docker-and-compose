@@ -1,0 +1,47 @@
+version: "3.9"
+services:
+  frontend:
+    container_name: compose-frontend
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports: 
+      - "8081:80"
+    env_file:
+      - .env
+  backend:
+    container_name: compose-backend
+    image: "compose-backend"
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    ports:
+      - "4000:3000"
+    depends_on:
+      - database
+    env_file: .env
+    healthcheck:
+      test: "wget -nv -t1 --spider 'http://localhost:4000/'"
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+    restart: unless-stopped
+  database:
+    container_name: database
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_PASSWORD=student
+      - POSTGRES_PORT=5432
+      - POSTGRES_DB=nest_project
+      - POSTGRES_USER=student
+      - POSTGRES_HOST=localhost
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+volumes:
+  postgres_data:
