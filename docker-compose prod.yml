@@ -1,11 +1,7 @@
 services:
-
   frontend:
     container_name: kpd-frontend
     image: kinduz90/kpd-frontend
-    build:
-      context: frontend
-      dockerfile: Dockerfile
     ports: 
       - "8080:80"
     networks:
@@ -16,9 +12,6 @@ services:
   backend:
     container_name: kpd-backend
     image: kinduz90/kpd-backend
-    build:
-      context: backend
-      dockerfile: Dockerfile
     ports:
       - "4000:3000"
     networks:

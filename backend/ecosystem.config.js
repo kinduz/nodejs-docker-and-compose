@@ -17,8 +17,8 @@ const {
 module.exports = {
   apps: [
     {
-      name: 'app',
-      script: './app.js',
+      name: 'backend',
+      script: './dist/src/main.js',
       env_production: {
         NODE_ENV: 'production',
         POSTGRES_HOST,

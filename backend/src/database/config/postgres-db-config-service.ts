@@ -11,10 +11,17 @@ export class PostgresDbConfigService implements TypeOrmOptionsFactory {
   constructor(private configService: ConfigService) {}
 
   createTypeOrmOptions(): TypeOrmModuleOptions {
+    console.log(
+      this.configService.get('POSTGRES_USER'),
+      this.configService.get('POSTGRES_PASSWORD'),
+      this.configService.get('POSTGRES_HOST'),
+      this.configService.get('POSTGRES_DB'),
+    );
+
     return {
       type: 'postgres',
       host: this.configService.get<string>('POSTGRES_HOST'),
-      port: 5432,
+      port: +this.configService.get<number>('POSTGRES_PORT'),
       username: this.configService.get<string>('POSTGRES_USER'),
       password: this.configService.get<string>('POSTGRES_PASSWORD'),
       database: this.configService.get<string>('POSTGRES_DB'),

@@ -1,7 +1,7 @@
 FROM node:16-alpine AS builder
 WORKDIR /app
 COPY package*.json ./
-RUN npm i --force && npm i -g pm2 @nestjs/cli @nestjs/common
+RUN npm ci --force
 COPY . .
 RUN npm run build
 
@@ -9,8 +9,8 @@ RUN npm run build
 FROM node:16-alpine AS backend
 WORKDIR /app
 COPY package*.json ./
-RUN npm i --force && npm i -g pm2 @nestjs/cli @nestjs/common
+RUN npm ci --force && npm i -g pm2
 COPY --from=builder /app/dist ./dist/
 COPY ./ecosystem.config.js ./
 
-CMD ["pm2-runtime", "start", "ecosystem.config.js"]
+ENTRYPOINT ["pm2-runtime", "start", "ecosystem.config.js"]
