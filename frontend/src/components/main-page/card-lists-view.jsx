@@ -53,7 +53,7 @@ const GoodCardList = ({ cards, isLogin, ownedIds }) => {
   return cards.map((cardInfo) => {
     const { name, price, raised, image, id } = cardInfo;
     const key = `${user.id}${id}`;
-    const isOwned = ownedIds.includes(id);
+    const isOwned = ownedIds?.includes(id);
 
     return (
       <GoodCard

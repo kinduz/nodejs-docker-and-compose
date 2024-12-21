@@ -18,7 +18,7 @@ export const SearchPage = ({ extraClass = "", queryHits }) => {
         {`${hitsCount} ${pluralize(hitsCount)}`}
       </h2>
       <div className={styles.cards_box}>
-        {queryHits?.hits?.map(({ username, avatar, id }) => (
+        {queryHits?.hits?.length && queryHits?.hits?.map(({ username, avatar, id }) => (
           <UserSearchCard name={username} img={avatar} key={id} />
         ))}
       </div>

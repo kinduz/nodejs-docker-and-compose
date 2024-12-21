@@ -63,7 +63,7 @@ export const CollectionsView = ({ url, ownWishes }) => {
         onClick={handleCollectionPopupOpen}
       />
       <div className={styles.cards_box}>
-        {collectionsList.map((card) => {
+        {collectionsList.length && collectionsList.map((card) => {
           return (
             <NavLink
               key={card.id}
@@ -225,7 +225,7 @@ const CollectionAddModal = ({
           Выберите товары из вашего вишлиста:
         </p>
         <div className={styles.wishes}>
-          {ownWishes.map((item) => {
+          {ownWishes.length && ownWishes?.map((item) => {
             return (
               <div key={item.id} className="mb-4">
                 <input

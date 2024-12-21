@@ -1,4 +1,5 @@
 export const findOwnedIds = (my, another) => {
+  if (!my.length) return;
   return my
     .filter(({ id }) => {
       const match = another.find((wish) => wish.id === id);

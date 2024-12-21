@@ -118,7 +118,7 @@ export const WishlistPage = ({ extraClass = "" }) => {
         ""
       )}
       <div className={styles.cards_box}>
-        {data.map(({ id, price, image, name, raised }) => {
+        {data?.wishes?.length && data?.wishes?.map(({ id, price, image, name, raised }) => {
           let withBorder = false;
           if (currentCardsId.indexOf(id) !== -1) {
             withBorder = true;

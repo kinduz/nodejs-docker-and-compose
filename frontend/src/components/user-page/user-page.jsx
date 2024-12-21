@@ -56,7 +56,7 @@ export const UserPage = ({ extraClass = "" }) => {
           Вишлист пользователя:
         </h2>
         <div className={styles.cards_box}>
-          {anotherUserWishes?.map(
+          {anotherUserWishes.length && anotherUserWishes?.map(
             ({ price, name, raised, image, link, id }) => {
               return (
                 <GoodCard
